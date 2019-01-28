@@ -1,5 +1,6 @@
-#Date 11-29-2017
+#Date 11-29-2018
 #Tensorflow CNN for disorder protein data
+#Load an individual Amino acid data collection to form protein vector, Then use CNN to classify the proteins to 4 labels as we processed in function loaddata. 
 #Chengbin
 from __future__ import print_function
 import sys
