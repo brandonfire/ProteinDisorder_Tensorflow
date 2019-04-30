@@ -137,6 +137,7 @@ def cnn_model_fn(features, labels, mode):
 
 if __name__ == "__main__":
     traindata,tlabel = loaddata(sys.argv[1])
+    testdata, testlabel = loaddata(sys.argv[2])
     f = open('label.txt','w')
     for i in tlabel:
         print(i,file=f)
@@ -154,8 +155,8 @@ if __name__ == "__main__":
       input_fn=train_input_fn,
       steps=20000,hooks=[logging_hook])
     eval_input_fn = tf.estimator.inputs.numpy_input_fn(
-      x={"x": traindata},
-      y=tlabel,
+      x={"x": testdata},
+      y=testlabel,
       num_epochs=1,
       shuffle=False)
     eval_results = classifier.evaluate(input_fn=eval_input_fn)
