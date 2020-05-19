@@ -1,12 +1,14 @@
-#Date 11-29-2019
-#version1.3
+#Date 3-29-2020
+#version1.4
 #Tensorflow CNN for disorder protein data
 #Load an individual Amino acid data collection to form protein vector, Then use CNN to classify the proteins to 4 labels as we processed in function loaddata. 
 #Chengbin
 from __future__ import print_function
 import sys
 import numpy as np
-import tensorflow as tf
+import tensorflow as tf 
+if int((tf.__version__)[0]) > 1: #if you are using tensorflow v2.0, load compat.v1 instead
+    tf = tf.compat.v1
 rng = np.random
 tf.logging.set_verbosity(tf.logging.INFO)
 
