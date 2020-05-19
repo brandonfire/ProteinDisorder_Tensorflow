@@ -1,4 +1,5 @@
-#Date 11-29-2018
+#Date 11-29-2019
+#version1.3
 #Tensorflow CNN for disorder protein data
 #Load an individual Amino acid data collection to form protein vector, Then use CNN to classify the proteins to 4 labels as we processed in function loaddata. 
 #Chengbin
@@ -105,13 +106,13 @@ def cnn_model_fn(features, labels, mode):
         activation=tf.nn.relu)
         
     pool1 = tf.layers.max_pooling2d(inputs=conv1, pool_size=[2, 2], strides=2)
-    #conv2 = tf.layers.conv2d(
-    #  inputs=pool1,
-    #  filters=16,
-    #  kernel_size=[5, 5],
-    #  padding="same",
-    #activation=tf.nn.relu)
-    #pool2 = tf.layers.max_pooling2d(inputs=conv2, pool_size=[2, 2], strides=2)
+    conv2 = tf.layers.conv2d(
+      inputs=pool1,
+      filters=16,
+      kernel_size=[5, 5],
+      padding="same",
+    activation=tf.nn.relu)
+    pool2 = tf.layers.max_pooling2d(inputs=conv2, pool_size=[2, 2], strides=2)
     pool2_flat = tf.reshape(pool1, [-1, 60 * 50 * 8])
     dense = tf.layers.dense(inputs=pool2_flat, units=512, activation=tf.nn.relu)
     dropout = tf.layers.dropout(
